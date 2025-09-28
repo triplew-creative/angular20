@@ -1,0 +1,30 @@
+<h2>Expenses</h2>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (expense of expenses(); track expense.id) {
+            <tr>
+                <td>{{ expense.id }}</td>
+                <td>{{ expense.category }}</td>
+                <td>{{ expense.amount | currency}}</td>
+                <td>
+                    <div class="badge bad rounded-pill"
+                         [class.bg-success]="expense.status === 'approved'"
+                         [class.bg-info]="expense.status !== 'approved'">{{ expense.status }}
+                    </div>
+                </td>
+                <td>{{ expense.date | date }}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
